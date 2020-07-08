@@ -32,25 +32,20 @@ if (!file.exists("data")) {
 
 # Download data using a URL into th data directory
 
-fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
-download.file(fileUrl, destfile = "./data/gdp")
-fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
-download.file(fileUrl, destfile = "./data/edu")
-dateDownloaded <- date()
-dateDownloaded
 list.files("./data")
 
 # Put data into a data frame or data table if very large, then look at the data 
-gdp.r <- data.frame(read.csv("./data/gdp", skip = 4, nrows = 231))
-colnames(gdp.r)[1] = c("CountryCode")
-edu.r <- data.frame(read.csv("./data/edu"))
-glimpse(gdp.r)
-glimpse(edu.r)
-head(gdp.r, 10)
-head(edu.r, 10)
-tail(gdp.r, 10)
-tail(edu.r, 40)
-view(gdp_edu)
+test <- read.table("./data/body_acc_x_test.txt", header = FALSE, sep = "", 
+                   dec = ".")
+test1 <- read.table("./data/body_acc_y_test.txt", header = FALSE, sep = "", 
+                   dec = ".")
+
+str(test1)
+glimpse(test1)
+glimpse(test)
+head(test1, 10)
+tail(test1, 10)
+view(test1)
 
 
 gdp_edu <- merge(gdp.r, edu.r)
