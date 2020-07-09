@@ -30,18 +30,49 @@ if (!file.exists("data")) {
   dir.create("data")
 }
 
-# Download data using a URL into th data directory
-
 list.files("./data")
+
+
+# Read files in
+subject_test <- readLines("./data/subject_test.txt")
+subject_train <- readLines("./data/subject_train.txt")
+body_acc_x_train <-  read.table("./data/body_acc_x_train.txt")
+body_acc_y_train  <-  read.table("./data/body_acc_y_train.txt")
+body_acc_z_train <-  read.table("./data/body_acc_z_train.txt")
+body_gyro_x_train  <-  read.table("./data/body_gyro_x_train.txt")
+body_gyro_y_train   <-  read.table("./data/body_gyro_y_train.txt")
+body_gyro_z_train  <-  read.table("./data/body_gyro_z_train.txt")
+total_acc_x_train   <-  read.table("./data/total_acc_x_train.txt")
+total_acc_y_train   <-  read.table("./data/total_acc_y_train.txt")
+total_acc_z_train   <-  read.table("./data/total_acc_z_train.txt")
+X_train   <-  read.table("./data/X_train.txt")
+y_train  <-  read.table("./data/y_train.txt")
+body_acc_x_test <-  read.table("./data/body_acc_x_test.txt") 
+body_acc_y_test   <-  read.table("./data/body_acc_y_test.txt")
+body_acc_z_test   <-  read.table("./data/body_acc_z_test.txt")
+body_gyro_x_test  <-  read.table("./data/body_gyro_x_test.txt")
+body_gyro_y_test  <-  read.table("./data/body_gyro_y_test.txt")
+body_gyro_z_test  <-  read.table("./data/body_gyro_z_test.txt")
+total_acc_x_test  <-  read.table("./data/total_acc_x_test.txt")
+total_acc_y_test  <-  read.table("./data/total_acc_y_test.txt")
+total_acc_z_test  <-  read.table("./data/total_acc_z_test.txt")
+X_test   <-  read.table("./data/X_test.txt")
+y_test   <-  read.table("./data/y_test.txt")
+features  <-  read.table("./data/features.txt")
+
+
 
 # Put data into a data frame or data table if very large, then look at the data 
 test <- read.table("./data/body_acc_x_test.txt", header = FALSE, sep = "", 
                    dec = ".")
 test1 <- read.table("./data/body_acc_y_test.txt", header = FALSE, sep = "", 
                    dec = ".")
+XTest <- read.table("./data/X_test.txt", header = FALSE, sep = "", 
+                    dec = ".")
 
-str(test1)
-glimpse(test1)
+
+str(XTest)
+glimpse(XTest)
 glimpse(test)
 head(test1, 10)
 tail(test1, 10)
