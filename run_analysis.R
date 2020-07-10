@@ -81,14 +81,17 @@ y_train <- left_join(y_train, activities)
 test <- bind_cols(y_test, X_test)
 train <- bind_cols(y_train, X_train)
 totalData <-bind_rows(train, test)
+glimpse(totalData)
 
 # Get column cames from feature data set added to total data. 
 
-featureNames <- c("activity", as.character(features[, 2]))
+featureNames <- c("activity", "description", as.character(features[, 2]))
 colnames(totalData) <- gsub("^[t]|[f]", "", featureNames)
+colnames(totalData) <- gsub("[()-]", "", featureNames)
+colnames(totalData)
+grep("[ Mean |mean | std]", featureNames, value = TRUE)
 
-
-
+view(featureNames)
 
 
 
