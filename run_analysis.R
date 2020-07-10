@@ -59,6 +59,7 @@ total_acc_z_test  <-  read.table("./data/total_acc_z_test.txt")
 X_test   <-  read.table("./data/X_test.txt")
 y_test   <-  read.table("./data/y_test.txt")
 features  <-  read.table("./data/features.txt")
+activities <- read.table("./data/activity_labels.txt")
 
 
 
@@ -71,15 +72,16 @@ XTest <- read.table("./data/X_test.txt", header = FALSE, sep = "",
                     dec = ".")
 
 
-str(XTest)
-glimpse(XTest)
-glimpse(test)
-head(test1, 10)
-tail(test1, 10)
-view(test1)
+# Get features togetgher
+test <- bind_cols(y_test, X_test)
+train <- bind_cols(y_train, X_train)
+totalData <-bind_rows(train, test)
 
+# Get column cames from feature data set added to total data. 
 
-gdp_edu <- merge(gdp.r, edu.r)
-glimpse(gdp_edu)
+featureNames <- c("activity", as.character(features[, 2]))
+colnames(totalData) <- gsub("^[t]|[f]", "", featureNames)
+View(totalData)
 
-length( grep("Fiscal year end: June 30", gdp_edu$Special.Notes))
+# add the activity names
+semi_join(totalData, activities, by = c("activity" = "V1"))
