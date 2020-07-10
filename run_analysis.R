@@ -71,18 +71,22 @@ test1 <- read.table("./data/body_acc_y_test.txt", header = FALSE, sep = "",
 XTest <- read.table("./data/X_test.txt", header = FALSE, sep = "", 
                     dec = ".")
 
+# try a join for activtive names
 # Get features togetgher and add activity names
-total_labels_test = data.frame(activities[match(y_test[,1],activities[,1]),2])
-total_labels_train = data.frame(activities[match(y_train[,1],activities[,1]),2])
-test <- bind_cols(total_labels_test, X_test)
-train <- bind_cols(total_labels_train, X_train)
+colnames(activities) <- c("activity", "description")
+colnames(y_test) <- "activity"
+colnames(y_train) <- "activity"
+y_test <- left_join(y_test, activities)
+y_train <- left_join(y_train, activities)
+test <- bind_cols(y_test, X_test)
+train <- bind_cols(y_train, X_train)
 totalData <-bind_rows(train, test)
 
 # Get column cames from feature data set added to total data. 
 
 featureNames <- c("activity", as.character(features[, 2]))
 colnames(totalData) <- gsub("^[t]|[f]", "", featureNames)
-View(totalData)
+
 
 
 
