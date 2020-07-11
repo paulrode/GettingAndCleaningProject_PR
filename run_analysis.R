@@ -41,8 +41,20 @@ sub_table$Subject <- as.numeric(sub_table$Subject)
 sub_table$Subject <- as.factor(sub_table$Subject)
 glimpse(sub_table)
 
-
+# Table made that groups by Subject and Description and provides mean values for each unique pair. 
 sub_table %>% group_by(Subject, Description) %>% summarise_all(funs(mean)) -> answer
-               
-view(arrange(answer))
 
+# Pring results to viewer
+View(sub_table)   
+view(answer)
+
+# Text generated for CodeBook.md
+totalData_features <- colnames(totalData)
+totalData_features <- data.frame(totalData_features)
+glimpse(totalData_features)
+view(totalData_features)
+
+sub_table <- colnames(sub_table)
+sub_table_features <- data.frame(sub_table)
+glimpse(sub_table)
+view(totalData_features)
