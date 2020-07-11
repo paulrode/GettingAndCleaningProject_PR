@@ -54,7 +54,7 @@ totalData_features <- data.frame(totalData_features)
 glimpse(totalData_features)
 view(totalData_features)
 
-sub_table <- colnames(sub_table)
-sub_table_features <- data.frame(sub_table)
-glimpse(sub_table)
-view(totalData_features)
+
+# Table exported for upload for grading and review
+write.table(answer, file = "answer.txt", row.names = FALSE)
+list.files()
