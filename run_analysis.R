@@ -39,7 +39,7 @@ sub_table <- totalData[,c(2,3,subgroup)]
 #sub_table$Description <-as.character(sub_table$Description)
 sub_table$Subject <- as.numeric(sub_table$Subject)
 sub_table$Subject <- as.factor(sub_table$Subject)
-glimpse(sub_table)
+
 
 # Table made that groups by Subject and Description and provides mean values for each unique pair. 
 sub_table %>% group_by(Subject, Description) %>% summarise_all(funs(mean)) -> answer
